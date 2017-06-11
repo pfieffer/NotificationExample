@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Simple Notification"
         android:layout_centerHorizontal="true"
-        android:background="#ffcc65"/>
+        android:background="#ffcc65" />
 
     <Button
         android:id="@+id/button_inbox_style"
@@ -31,6 +31,15 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/button_inbox_style"
         android:background="#32cc12"/>
+
+    <Button
+        android:id="@+id/button_bigpicture_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big Picture Style Notification"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_bigtext_style"
+        android:background="#a4a4a2"/>
 
 
 
