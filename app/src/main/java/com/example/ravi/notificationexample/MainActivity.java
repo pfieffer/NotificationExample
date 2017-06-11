@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -38,6 +40,40 @@ public class MainActivity extends AppCompatActivity {
                 inboxStyleNotificationFunc();
             }
         });
+
+        btnBigTextStyleNot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bigTextStyleNotificationFunc();
+            }
+        });
+    }
+
+    private void bigTextStyleNotificationFunc() {
+        //to set large icon in notification
+        Bitmap icon1 = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+
+        //assign BigText Style notification
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        bigTextStyle.bigText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+        bigTextStyle.setBigContentTitle("Big Text Notification");
+        bigTextStyle.setSummaryText("By: Author of Lorem ipsum");
+
+        //build Notification
+        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Big Text Notification")
+                .setContentText("This is a test of big text style notification")
+                .setLargeIcon(icon1)
+                .setStyle(bigTextStyle);
+
+        //get an instance of the notification manager service
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //to post notification to the notification bar
+        mNotificationManager.notify(0,mBuilder.build());
+
+
     }
 
     private void inboxStyleNotificationFunc() {
