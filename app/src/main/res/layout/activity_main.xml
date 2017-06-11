@@ -7,11 +7,13 @@
     tools:context="com.example.ravi.notificationexample.MainActivity">
 
     <Button
-        android:id="@+id/button_click"
+        android:id="@+id/button_simple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Simple Notification"
         android:layout_centerHorizontal="true"
         android:background="#ffcc65"/>
+
+    
 
 </RelativeLayout>
