@@ -14,6 +14,25 @@
         android:layout_centerHorizontal="true"
         android:background="#ffcc65"/>
 
-    
+    <Button
+        android:id="@+id/button_inbox_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inbox Style Notification"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_simple"
+        android:background="#ff12cc"/>
+
+    <Button
+        android:id="@+id/button_bigtext_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big Text Style Notification"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_inbox_style"
+        android:background="#32cc12"/>
+
+
+
 
 </RelativeLayout>
