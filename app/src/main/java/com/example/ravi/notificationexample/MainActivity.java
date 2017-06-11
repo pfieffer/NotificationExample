@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSimpleNot, btnInboxStyleNot, btnBigTextStyleNot;
+    Button btnSimpleNot, btnInboxStyleNot, btnBigTextStyleNot, btnBigPictureStyleNot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnSimpleNot = (Button) findViewById(R.id.button_simple);
         btnInboxStyleNot = (Button) findViewById(R.id.button_inbox_style);
         btnBigTextStyleNot = (Button) findViewById(R.id.button_bigtext_style);
+        btnBigPictureStyleNot = (Button) findViewById(R.id.button_bigpicture_style);
 
         btnSimpleNot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,40 @@ public class MainActivity extends AppCompatActivity {
                 bigTextStyleNotificationFunc();
             }
         });
+
+        btnBigPictureStyleNot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bigPictureStyleNotificationFunc();
+            }
+        });
+    }
+
+    private void bigPictureStyleNotificationFunc() {
+        //assign BigText Style notification
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+
+        bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round)).build();
+
+        //get an instance of the notification manager service
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //set Intents and pending Intents to call activity on click of "show activity" action button of notification
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent piResult = PendingIntent.getActivity(this, (int) Calendar.getInstance().getTimeInMillis(), resultIntent, 0);
+
+        //build Notification
+        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Big Picture Notification")
+                .setContentText("This is a test of big picture style notification")
+                .setStyle(bigPictureStyle)
+                .addAction(R.drawable.ic_input_black, "Show Activity", piResult)
+                .addAction(R.drawable.ic_share_black, "Share", PendingIntent.getActivity(getApplicationContext(), 0, getIntent(), 0, null));
+
+        //post notification to the notifications bar
+        mNotificationManager.notify(0,mBuilder.build());
     }
 
     private void bigTextStyleNotificationFunc() {
